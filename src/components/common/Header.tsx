@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useInvitationFlow } from "@/contexts/InvitationFlowContext";
@@ -17,6 +16,15 @@ const navItems = [
   { href: "#faq", label: ui.nav.faq },
   { href: "#rsvp", label: ui.nav.rsvp },
 ] as const;
+
+function getMenuButtonClassName(isOnCover: boolean) {
+  return cn(
+    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border backdrop-blur-md transition",
+    isOnCover
+      ? "border-white/40 bg-white/10 text-white shadow-[0_2px_20px_rgba(0,0,0,.18)] hover:border-white/55 hover:bg-white/18"
+      : "border-wedding-gold/80 bg-wedding-pearl/95 text-wedding-ink shadow-[0_4px_24px_rgba(78,57,43,0.14)] hover:border-wedding-brown/40 hover:bg-white",
+  );
+}
 
 export function Header() {
   const { isInvitationOpen, isRsvpCompleted, openInvitation, returnToCover } =
@@ -73,7 +81,8 @@ export function Header() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  const showSolidHeader = scrolled || isInvitationOpen;
+  const isOnCover = !isInvitationOpen;
+  const showLightLogo = isOnCover && !scrolled;
 
   const navigateToSection = useCallback(
     (href: string) => {
@@ -100,21 +109,22 @@ export function Header() {
     }
   };
 
-  const showDesktopNav = isInvitationOpen;
-  const showBurger = !isInvitationOpen;
-
   return (
     <>
       <motion.header
         className={cn(
           "safe-top fixed left-0 top-0 z-50 w-full px-4 py-4 transition-[box-shadow] duration-300 sm:px-6 md:px-10",
-          showSolidHeader && "shadow-[0_8px_32px_rgba(78,57,43,0.08)]",
+          (scrolled || isInvitationOpen) &&
+            "shadow-[0_8px_32px_rgba(78,57,43,0.06)]",
         )}
         animate={{
-          backgroundColor: showSolidHeader
-            ? "rgba(247, 243, 239, 0.94)"
-            : "rgba(247, 243, 239, 0)",
-          backdropFilter: showSolidHeader ? "blur(16px)" : "blur(0px)",
+          backgroundColor: isOnCover
+            ? "rgba(247, 243, 239, 0)"
+            : scrolled
+              ? "rgba(247, 243, 239, 0.88)"
+              : "rgba(247, 243, 239, 0)",
+          backdropFilter:
+            isOnCover && !scrolled ? "blur(0px)" : "blur(12px)",
         }}
         transition={{ duration: 0.25 }}
       >
@@ -126,79 +136,34 @@ export function Header() {
               onClick={handleLogoClick}
               className="group flex min-w-0 shrink-0 flex-col leading-none text-left"
             >
-              <LogoText showSolidHeader={showSolidHeader} />
+              <LogoText light={showLightLogo} />
             </button>
           ) : (
             <div className="group flex min-w-0 shrink-0 flex-col leading-none">
-              <LogoText showSolidHeader={showSolidHeader} />
+              <LogoText light={showLightLogo} />
             </div>
           )}
 
-          {showDesktopNav ? (
-            <nav
-              className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1"
-              aria-label={ui.nav.label}
-            >
-              {items.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full px-2 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-wedding-ink/72 transition-colors hover:bg-wedding-beige/60 hover:text-wedding-ink xl:px-3 xl:text-[10px] xl:tracking-[0.2em] 2xl:px-4 2xl:text-[11px]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          ) : (
-            <span className="hidden flex-1 lg:block" aria-hidden="true" />
-          )}
-
-          {showBurger ? (
-            <button
-              ref={menuButtonRef}
-              type="button"
-              aria-label={menuOpen ? ui.nav.closeMenu : ui.nav.openMenu}
-              aria-expanded={menuOpen}
-              aria-controls="site-mobile-menu"
-              onClick={() => setMenuOpen((open) => !open)}
-              className={cn(
-                "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border backdrop-blur-md transition",
-                showSolidHeader
-                  ? "border-wedding-line bg-wedding-pearl text-wedding-ink hover:bg-white"
-                  : "border-white/35 bg-white/10 text-white hover:bg-white/20",
-              )}
-            >
-              {menuOpen ? (
-                <X size={20} strokeWidth={1.5} aria-hidden="true" />
-              ) : (
-                <Menu size={20} strokeWidth={1.5} aria-hidden="true" />
-              )}
-            </button>
-          ) : (
-            <button
-              ref={menuButtonRef}
-              type="button"
-              aria-label={menuOpen ? ui.nav.closeMenu : ui.nav.openMenu}
-              aria-expanded={menuOpen}
-              aria-controls="site-mobile-menu"
-              onClick={() => setMenuOpen((open) => !open)}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-wedding-line bg-wedding-pearl text-wedding-ink backdrop-blur-md transition hover:bg-white lg:hidden"
-            >
-              {menuOpen ? (
-                <X size={20} strokeWidth={1.5} aria-hidden="true" />
-              ) : (
-                <Menu size={20} strokeWidth={1.5} aria-hidden="true" />
-              )}
-            </button>
-          )}
+          <button
+            ref={menuButtonRef}
+            type="button"
+            aria-label={menuOpen ? ui.nav.closeMenu : ui.nav.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls="site-mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+            className={getMenuButtonClassName(isOnCover)}
+          >
+            {menuOpen ? (
+              <X size={20} strokeWidth={1.5} aria-hidden="true" />
+            ) : (
+              <Menu size={20} strokeWidth={1.5} aria-hidden="true" />
+            )}
+          </button>
         </div>
       </motion.header>
 
       {menuOpen ? (
-        <div
-          className="fixed inset-0 z-[60]"
-          role="presentation"
-        >
+        <div className="fixed inset-0 z-[60]" role="presentation">
           <button
             type="button"
             aria-label={ui.nav.closeMenu}
@@ -213,10 +178,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label={ui.nav.label}
-            className={cn(
-              "safe-top safe-bottom absolute right-0 top-0 flex h-full w-[min(100%,320px)] flex-col bg-wedding-pearl px-6 py-24 shadow-luxury outline-none",
-              isInvitationOpen && "lg:hidden",
-            )}
+            className="safe-top safe-bottom absolute right-0 top-0 flex h-full w-[min(100%,320px)] flex-col bg-wedding-pearl px-6 py-24 shadow-luxury outline-none sm:w-[min(100%,360px)]"
           >
             <p className="mb-6 text-[10px] uppercase tracking-[0.28em] text-wedding-gold">
               {ui.nav.label}
@@ -268,15 +230,15 @@ export function Header() {
   );
 }
 
-function LogoText({ showSolidHeader }: { showSolidHeader: boolean }) {
+function LogoText({ light }: { light: boolean }) {
   return (
     <>
       <span
         className={cn(
           "wedding-serif text-[28px] font-medium tracking-[-0.08em] transition-colors sm:text-[34px] md:text-[40px]",
-          showSolidHeader
-            ? "text-wedding-ink group-hover:text-wedding-brown"
-            : "text-white drop-shadow-[0_2px_12px_rgba(0,0,0,.25)] group-hover:opacity-80",
+          light
+            ? "text-white drop-shadow-[0_2px_12px_rgba(0,0,0,.25)] group-hover:opacity-80"
+            : "text-wedding-ink group-hover:text-wedding-brown",
         )}
       >
         {ui.brand.logoMain}
@@ -284,9 +246,9 @@ function LogoText({ showSolidHeader }: { showSolidHeader: boolean }) {
       <span
         className={cn(
           "-mt-1 text-[8px] uppercase tracking-[0.28em] transition-colors sm:text-[9px] sm:tracking-[0.32em]",
-          showSolidHeader
-            ? "text-wedding-brown/70"
-            : "text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,.25)]",
+          light
+            ? "text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,.25)]"
+            : "text-wedding-brown/70",
         )}
       >
         {ui.brand.logoSub}

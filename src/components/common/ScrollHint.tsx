@@ -15,7 +15,7 @@ export function ScrollHint() {
       aria-label={ui.hero.openInvitation}
       className="safe-bottom absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 text-white/80 sm:bottom-8 sm:gap-3"
     >
-      <span className="text-[9px] font-semibold uppercase tracking-[0.24em] sm:text-[10px] sm:tracking-[0.32em]">
+      <span className="text-[clamp(11px,2.2vw,15px)] font-semibold uppercase tracking-[0.22em] text-white/90 sm:tracking-[0.28em]">
         {ui.hero.openInvitation}
       </span>
 

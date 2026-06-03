@@ -19,8 +19,15 @@ export default function HomePage() {
       name: weddingData.venue.title,
       address: {
         "@type": "PostalAddress",
-        addressLocality: weddingData.city,
-        streetAddress: weddingData.venue.address,
+        addressCountry: "RU",
+        addressRegion: "Московская область",
+        addressLocality: "Красногорск, деревня Марьино",
+        streetAddress: "улица Центральная, 3Г",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: weddingData.venue.latitude,
+        longitude: weddingData.venue.longitude,
       },
     },
     image: [heroImageUrl],

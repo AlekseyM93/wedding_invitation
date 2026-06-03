@@ -18,7 +18,11 @@ export function RsvpSection() {
 
           <div className="rsvp-section-divider" aria-hidden="true">
             <span className="rsvp-section-divider-line" />
-            <DecorativeHeart className="h-11 w-11 shrink-0 shadow-card" />
+            <DecorativeHeart
+              variant="accent"
+              iconSize={21}
+              className="rsvp-section-heart h-12 w-12 shrink-0 sm:h-[3.35rem] sm:w-[3.35rem]"
+            />
             <span className="rsvp-section-divider-line" />
           </div>
 

@@ -139,6 +139,700 @@ a {
   backdrop-filter: blur(18px);
 }
 
+/* История — адаптив: мобильный / планшет / компьютер */
+
+.story-section-head .wedding-text {
+  max-width: 36rem;
+  padding-inline: clamp(0px, 3vw, 1rem);
+}
+
+.story-chapters {
+  margin-top: clamp(2.5rem, 8vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.story-chapter-row {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 1.75rem);
+}
+
+.story-chapter-card {
+  position: relative;
+  min-height: 0;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  padding: clamp(1.25rem, 4.5vw, 1.75rem);
+}
+
+.story-chapter-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.story-chapter-label {
+  display: inline-block;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(10px, 2.2vw, 13px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brown);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(167, 141, 111, 0.45);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.story-chapter-title {
+  max-width: 100%;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.65rem, 6.2vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+}
+
+.story-chapter-body {
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2.5vw, 1rem);
+}
+
+.story-chapter-body p {
+  font-size: clamp(14px, 3.6vw, 16px);
+  line-height: 1.65;
+  color: rgba(78, 57, 43, 0.72);
+}
+
+/* Планшет */
+@media (min-width: 768px) {
+  .story-chapters {
+    gap: 3rem;
+  }
+
+  .story-chapter-row {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+
+  .story-chapter-media {
+    grid-column: span 6;
+  }
+
+  .story-chapter-content {
+    grid-column: span 6;
+  }
+
+  .story-chapter-row--reversed .story-chapter-media {
+    order: 2;
+  }
+
+  .story-chapter-row--reversed .story-chapter-content {
+    order: 1;
+  }
+
+  .story-chapter-card {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    min-height: 300px;
+  }
+
+  .story-chapter-label {
+    letter-spacing: 0.22em;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .story-chapter-title {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    line-height: 1.12;
+    hyphens: none;
+  }
+
+  .story-chapter-body {
+    gap: 1rem;
+  }
+
+  .story-chapter-body p {
+    font-size: 15px;
+    line-height: 1.68;
+  }
+}
+
+/* Компьютер */
+@media (min-width: 1024px) {
+  .story-chapters {
+    gap: 4rem;
+  }
+
+  .story-chapter-row {
+    gap: 2rem;
+  }
+
+  .story-chapter-media {
+    grid-column: span 7;
+  }
+
+  .story-chapter-content {
+    grid-column: span 5;
+  }
+
+  .story-chapter-card {
+    padding: 2.25rem 2.5rem;
+    min-height: 340px;
+  }
+
+  .story-chapter-title {
+    font-size: clamp(1.85rem, 2.2vw, 2.65rem);
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+  }
+
+  .story-chapter-body p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+@media (min-width: 1280px) {
+  .story-chapter-card {
+    padding: 3rem;
+    min-height: 360px;
+  }
+
+  .story-chapter-title {
+    font-size: clamp(2rem, 2.4vw, 2.85rem);
+  }
+}
+
+/* Программа: мобильный → планшет (768px) → компьютер (1024px) */
+
+.program-step-row {
+  grid-template-rows: auto auto;
+}
+
+.program-step-copy {
+  order: 1;
+}
+
+.program-step-media {
+  order: 2;
+}
+
+.program-step-title {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.5rem, 5.2vw, 2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+.program-step-time-em {
+  font-size: clamp(1.55rem, 5.5vw, 2.05rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--brown);
+}
+
+.program-step-title-sep {
+  font-weight: 400;
+  color: rgba(78, 57, 43, 0.45);
+}
+
+.program-step-text {
+  margin-top: clamp(0.85rem, 3vw, 1.25rem);
+  font-size: clamp(14px, 3.6vw, 16px);
+  line-height: 1.65;
+  color: rgba(78, 57, 43, 0.72);
+  max-width: 36rem;
+}
+
+/* Планшет */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .program-step-time-em {
+    font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+  }
+
+  .program-step-title {
+    font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+    line-height: 1.1;
+  }
+
+  .program-step-text {
+    margin-top: 1.15rem;
+    font-size: 15px;
+    line-height: 1.68;
+    max-width: 32rem;
+  }
+
+  .program-step-copy-inner {
+    max-width: 32rem;
+  }
+}
+
+/* Компьютер — текст по центру напротив своей картинки */
+@media (min-width: 1024px) {
+  .program-step-row {
+    grid-template-rows: none;
+    align-items: center;
+    column-gap: 1.25rem;
+  }
+
+  .program-step-copy {
+    order: unset;
+    align-self: center;
+  }
+
+  .program-step-media {
+    order: unset;
+    align-self: center;
+  }
+
+  .program-step-row--reversed .program-step-media {
+    order: 1;
+  }
+
+  .program-step-row--reversed .program-step-copy {
+    order: 2;
+  }
+
+  .program-step-copy-inner {
+    width: auto;
+    max-width: 28rem;
+  }
+
+  /* flex-col: к картинке — align-items, не justify-content */
+  .program-step-row:not(.program-step-row--reversed) .program-step-copy {
+    align-items: flex-end;
+    padding-right: 0.5rem;
+  }
+
+  .program-step-row:not(.program-step-row--reversed) .program-step-copy-inner {
+    text-align: right;
+  }
+
+  .program-step-row--reversed .program-step-copy {
+    align-items: flex-start;
+    padding-left: 0.5rem;
+  }
+
+  .program-step-row--reversed .program-step-copy-inner {
+    text-align: left;
+  }
+
+  .program-step-image {
+    aspect-ratio: 1.15 / 1;
+  }
+
+  .program-step-time-em {
+    font-size: clamp(1.9rem, 2.4vw, 2.85rem);
+  }
+
+  .program-step-title {
+    font-size: clamp(1.85rem, 2.2vw, 2.65rem);
+    letter-spacing: -0.05em;
+    line-height: 1.08;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+
+  .program-step-text {
+    margin-top: 1.35rem;
+    font-size: 16px;
+    line-height: 1.72;
+    max-width: none;
+  }
+}
+
+/* Локация: мобильный → планшет (768px) → компьютер (1024px) */
+
+.location-hero-image {
+  overflow: hidden;
+}
+
+.location-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 252, 247, 0.08) 0%,
+    rgba(78, 57, 43, 0.12) 55%,
+    rgba(78, 57, 43, 0.28) 100%
+  );
+}
+
+.location-address-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(1rem, 3vw, 1.35rem);
+}
+
+.location-pin {
+  height: 3.25rem;
+  width: 3.25rem;
+  color: var(--brown);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(167, 141, 111, 0.45);
+  box-shadow: 0 8px 28px rgba(78, 57, 43, 0.1);
+}
+
+.location-address-label {
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: clamp(11px, 2.4vw, 13px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brown);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(167, 141, 111, 0.55);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.location-venue-name {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+}
+
+.location-venue-address {
+  margin-top: clamp(1rem, 3vw, 1.35rem);
+  font-size: clamp(15px, 3.8vw, 17px);
+  line-height: 1.65;
+  color: rgba(78, 57, 43, 0.78);
+}
+
+.location-venue-note {
+  margin-top: 0.65rem;
+  font-size: clamp(13px, 3.2vw, 15px);
+  line-height: 1.55;
+  color: rgba(78, 57, 43, 0.55);
+  font-style: italic;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .location-venue-name {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .location-venue-address {
+    font-size: 16px;
+    line-height: 1.68;
+  }
+
+  .location-address-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .location-venue-name {
+    font-size: clamp(2.85rem, 3.5vw, 4.25rem);
+  }
+
+  .location-venue-address {
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 28rem;
+  }
+
+  .location-address-label {
+    font-size: 13px;
+    padding: 0.55rem 1rem;
+  }
+
+  .location-address-heading {
+    gap: 1rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .location-pin {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+}
+
+/* Дресс-код: палитра */
+
+.dress-color-grid {
+  display: grid;
+  max-width: 42rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem 0.65rem;
+}
+
+.dress-color-swatch {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(78, 57, 43, 0.28);
+  box-shadow:
+    0 6px 18px rgba(78, 57, 43, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.dress-color-swatch--light {
+  border-color: rgba(78, 57, 43, 0.42);
+  box-shadow:
+    0 8px 22px rgba(78, 57, 43, 0.16),
+    inset 0 0 0 1px rgba(78, 57, 43, 0.1);
+}
+
+.dress-color-name {
+  margin-top: 0.65rem;
+  font-size: clamp(9px, 2.2vw, 11px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: none;
+  color: rgba(78, 57, 43, 0.68);
+}
+
+@media (min-width: 640px) {
+  .dress-color-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.15rem 0.85rem;
+  }
+
+  .dress-color-swatch {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .dress-color-name {
+    margin-top: 1rem;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (min-width: 768px) {
+  .dress-color-swatch {
+    height: 5rem;
+    width: 5rem;
+  }
+}
+
+/* FAQ: иконки крупнее, в стиле сайта */
+
+.faq-item-heading {
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.faq-item-title {
+  padding-top: 0.45rem;
+}
+
+.faq-item-title-text {
+  font-size: clamp(1.5rem, 4.5vw, 2.125rem);
+  line-height: 1.12;
+}
+
+.faq-icon {
+  display: flex;
+  height: 3.25rem;
+  width: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--brown);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(167, 141, 111, 0.5);
+  box-shadow: 0 8px 24px rgba(78, 57, 43, 0.1);
+}
+
+.faq-icon-svg {
+  height: 1.35rem;
+  width: 1.35rem;
+}
+
+.faq-answer {
+  padding-left: calc(3.25rem + 0.85rem);
+  font-size: clamp(14px, 3.5vw, 15px);
+  line-height: 1.7;
+  color: rgba(78, 57, 43, 0.68);
+}
+
+.faq-coordinator-name {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.faq-coordinator-phone {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: clamp(15px, 3.6vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--brown);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.faq-coordinator-phone:hover {
+  opacity: 0.75;
+}
+
+@media (min-width: 640px) {
+  .faq-item-heading {
+    gap: 1.15rem;
+  }
+
+  .faq-item-title {
+    padding-top: 0.55rem;
+  }
+
+  .faq-icon {
+    height: 3.75rem;
+    width: 3.75rem;
+  }
+
+  .faq-icon-svg {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .faq-answer {
+    padding-left: calc(3.75rem + 1.15rem);
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .faq-item-title {
+    padding-top: 0.65rem;
+  }
+
+  .faq-icon {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .faq-icon-svg {
+    height: 1.65rem;
+    width: 1.65rem;
+  }
+
+  .faq-answer {
+    padding-left: calc(4rem + 1.15rem);
+  }
+}
+
+/* Дата события — обложка и приглашение */
+
+.wedding-event-date {
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.wedding-event-date--hero {
+  font-size: clamp(14px, 2.9vw, 21px);
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
+}
+
+.wedding-event-date--invitation {
+  font-size: clamp(12px, 2.5vw, 16px);
+  letter-spacing: 0.32em;
+  color: rgba(78, 57, 43, 0.82);
+}
+
+@media (min-width: 768px) {
+  .wedding-event-date--hero {
+    font-size: clamp(15px, 2.2vw, 22px);
+    letter-spacing: 0.34em;
+  }
+
+  .wedding-event-date--invitation {
+    font-size: clamp(13px, 1.8vw, 17px);
+    letter-spacing: 0.36em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wedding-event-date--invitation {
+    font-size: 17px;
+    color: #5a3f2e;
+  }
+}
+
+/* Финальная страница — благодарность */
+
+.thank-you-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.thank-you-lead {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.thank-you-text,
+.thank-you-closing {
+  font-size: clamp(15px, 3.8vw, 17px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.thank-you-closing {
+  margin-top: 0.25rem;
+  font-size: clamp(16px, 4vw, 18px);
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 768px) {
+  .thank-you-copy {
+    gap: 1rem;
+  }
+
+  .thank-you-lead {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .thank-you-text,
+  .thank-you-closing {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+}
+
+@media (min-width: 1024px) {
+  .thank-you-copy {
+    gap: 1.15rem;
+  }
+}
+
 .image-mask {
   overflow: hidden;
   border-radius: clamp(20px, 4vw, 36px);

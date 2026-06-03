@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { weddingData } from "@/data/wedding";
 import { ui } from "@/data/ui";
 import { SectionTitle } from "@/components/common/SectionTitle";
+import { cn } from "@/lib/utils";
 
 type ActiveLook = {
   image: string;
@@ -59,19 +60,20 @@ export function DressCodeSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="mx-auto mt-12 grid max-w-4xl grid-cols-3 gap-3 sm:mt-16 sm:grid-cols-6 sm:gap-5"
+          className="dress-color-grid mx-auto mt-12 sm:mt-16"
         >
           {weddingData.dressColors.map((color) => (
-            <div key={color.id} className="min-w-0 text-center">
+            <div key={color.id} className="dress-color-item min-w-0 text-center">
               <div
-                className="mx-auto h-12 w-12 rounded-full border border-white/80 shadow-card sm:h-16 sm:w-16 md:h-20 md:w-20"
+                className={cn(
+                  "dress-color-swatch mx-auto",
+                  color.light && "dress-color-swatch--light",
+                )}
                 style={{ backgroundColor: color.hex }}
                 role="img"
                 aria-label={color.name}
               />
-              <p className="mt-2 truncate text-[9px] uppercase tracking-[0.16em] text-wedding-ink/58 sm:mt-4 sm:text-[10px] sm:tracking-[0.22em]">
-                {color.name}
-              </p>
+              <p className="dress-color-name">{color.name}</p>
             </div>
           ))}
         </motion.div>

@@ -10,6 +10,7 @@ import { DressCodeSection } from "@/sections/DressCodeSection";
 import { FaqSection } from "@/sections/FaqSection";
 import { RsvpSection } from "@/sections/RsvpSection";
 import { ThankYouSection } from "@/sections/ThankYouSection";
+import { scrollToThankYouSection } from "@/lib/scroll-to-thank-you";
 
 export function InvitationContent() {
   const { isRsvpCompleted } = useInvitationFlow();
@@ -22,14 +23,7 @@ export function InvitationContent() {
 
     scrolledToFinalRef.current = true;
 
-    const timer = window.setTimeout(() => {
-      const target = document.getElementById("thank-you");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 400);
-
-    return () => window.clearTimeout(timer);
+    scrollToThankYouSection(400);
   }, [isRsvpCompleted]);
 
   return (

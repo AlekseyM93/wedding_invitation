@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { weddingData } from "@/data/wedding";
 import { ui } from "@/data/ui";
 import { SectionTitle } from "@/components/common/SectionTitle";
-import { cn } from "@/lib/utils";
+import { cn, formatPhoneForHref } from "@/lib/utils";
 
 const icons = [Gift, Car, Baby, Shirt, Hotel, MessageCircle];
 
@@ -49,17 +49,17 @@ export function FaqSection() {
                   id={buttonId}
                   type="button"
                   onClick={() => setActiveId(isActive ? null : item.id)}
-                  className="flex w-full min-w-0 items-start justify-between gap-3 text-left sm:gap-5"
+                  className="flex w-full min-w-0 items-center justify-between gap-3 text-left sm:gap-5"
                   aria-expanded={isActive}
                   aria-controls={panelId}
                 >
-                  <span className="flex min-w-0 gap-3 sm:gap-5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-wedding-cream text-wedding-gold sm:h-12 sm:w-12">
-                      <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
+                  <span className="faq-item-heading flex min-w-0">
+                    <span className="faq-icon shrink-0" aria-hidden="true">
+                      <Icon className="faq-icon-svg" strokeWidth={1.65} />
                     </span>
 
-                    <span className="min-w-0">
-                      <span className="wedding-serif block text-[clamp(1.5rem,4.5vw,2.125rem)] font-light leading-[1.05] tracking-[-0.04em] text-wedding-ink">
+                    <span className="faq-item-title min-w-0">
+                      <span className="faq-item-title-text wedding-serif block font-light tracking-[-0.04em] text-wedding-ink">
                         {item.title}
                       </span>
                     </span>
@@ -70,7 +70,7 @@ export function FaqSection() {
                     strokeWidth={1.5}
                     aria-hidden="true"
                     className={cn(
-                      "mt-3 shrink-0 text-wedding-gold transition-transform duration-300",
+                      "shrink-0 text-wedding-gold transition-transform duration-300",
                       isActive && "rotate-180",
                     )}
                   />
@@ -88,9 +88,22 @@ export function FaqSection() {
                       transition={{ duration: 0.32, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="pt-4 text-[14px] leading-7 text-wedding-ink/68 sm:pl-[68px] sm:pt-5 sm:text-[15px]">
-                        {item.text}
-                      </p>
+                      <div className="faq-answer pt-4 sm:pt-5">
+                        <p>{item.text}</p>
+                        {item.id === 6 ? (
+                          <div className="faq-coordinator-contact mt-5">
+                            <p className="faq-coordinator-name">
+                              {weddingData.coordinator.name}
+                            </p>
+                            <a
+                              href={`tel:${formatPhoneForHref(weddingData.coordinator.phone)}`}
+                              className="faq-coordinator-phone"
+                            >
+                              {weddingData.coordinator.phone}
+                            </a>
+                          </div>
+                        ) : null}
+                      </div>
                     </motion.div>
                   ) : null}
                 </AnimatePresence>

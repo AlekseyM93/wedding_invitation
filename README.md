@@ -50,9 +50,13 @@ npm run check
 
 Скрипт для таблицы: [google-apps-script/rsvp-webhook.gs](google-apps-script/rsvp-webhook.gs)
 
-## Деплой
+## Деплой, домен и SSL
 
-1. Загрузите проект на Vercel (или другой хостинг с Node.js).
-2. Добавьте переменные из `.env.example`.
-3. Укажите `NEXT_PUBLIC_SITE_URL` с боевым доменом.
-4. Перед публикацией обновите данные в `wedding.ts` (имена, дата, площадка, контакты).
+Пошаговая инструкция: **[docs/DEPLOY-DOMAIN-SSL.md](docs/DEPLOY-DOMAIN-SSL.md)** (Vercel + HTTPS, подключение своего домена, чеклист).
+
+Кратко:
+
+1. Импортируйте репозиторий на [Vercel](https://vercel.com) — SSL выдаётся автоматически.
+2. В Environment Variables укажите `NEXT_PUBLIC_SITE_URL`, `GOOGLE_SHEETS_WEBHOOK_URL`, `GOOGLE_SHEETS_SECRET`.
+3. В **Domains** добавьте свой домен и DNS-записи у регистратора.
+4. Перед публикацией проверьте тексты в `wedding.ts` и тест RSVP.

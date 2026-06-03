@@ -1,11 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import { MessageCircle, Phone } from "lucide-react";
+import { useInvitationFlow } from "@/contexts/InvitationFlowContext";
 import { weddingData } from "@/data/wedding";
 import { ui } from "@/data/ui";
 import { formatPhoneForHref } from "@/lib/utils";
 
 export function ThankYouSection() {
+  const { rsvpAttendance } = useInvitationFlow();
   const coupleLabel = `${weddingData.groom} и ${weddingData.bride}`;
+  const thankYouBody =
+    rsvpAttendance === "no"
+      ? ui.sections.thankYou.textDeclined
+      : ui.sections.thankYou.text;
 
   return (
     <section
@@ -42,9 +50,11 @@ export function ThankYouSection() {
           <span className="block break-words">{weddingData.bride}</span>
         </h2>
 
-        <p className="mx-auto mt-6 max-w-xl text-[15px] leading-7 text-white/75 sm:mt-8 sm:text-[17px] sm:leading-8">
-          {ui.sections.thankYou.text}
-        </p>
+        <div className="thank-you-copy mx-auto mt-6 max-w-xl sm:mt-8">
+          <p className="thank-you-lead">{ui.sections.thankYou.lead}</p>
+          <p className="thank-you-text">{thankYouBody}</p>
+          <p className="thank-you-closing">{ui.sections.thankYou.closing}</p>
+        </div>
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4">
           <a

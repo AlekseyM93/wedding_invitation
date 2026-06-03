@@ -15,12 +15,15 @@ const STORAGE_KEY = "wedding-invitation-flow-v1";
 export type InvitationFlowStage = "locked" | "opened" | "completed";
 export type InvitationView = "cover" | "content";
 
+export type RsvpAttendance = "yes" | "no";
+
 type InvitationFlowContextValue = {
   stage: InvitationFlowStage;
   view: InvitationView;
+  rsvpAttendance: RsvpAttendance | null;
   openInvitation: () => void;
   returnToCover: () => void;
-  completeRsvp: () => void;
+  completeRsvp: (attendance: RsvpAttendance) => void;
   isContentUnlocked: boolean;
   isInvitationOpen: boolean;
   isRsvpCompleted: boolean;
@@ -62,6 +65,9 @@ function writeStoredStage(stage: InvitationFlowStage) {
 export function InvitationFlowProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<InvitationFlowStage>("locked");
   const [view, setView] = useState<InvitationView>("cover");
+  const [rsvpAttendance, setRsvpAttendance] = useState<RsvpAttendance | null>(
+    null,
+  );
 
   useEffect(() => {
     const stored = readStoredStage();
@@ -81,7 +87,8 @@ export function InvitationFlowProvider({ children }: { children: ReactNode }) {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, []);
 
-  const completeRsvp = useCallback(() => {
+  const completeRsvp = useCallback((attendance: RsvpAttendance) => {
+    setRsvpAttendance(attendance);
     setStage("completed");
     writeStoredStage("completed");
   }, []);
@@ -90,6 +97,7 @@ export function InvitationFlowProvider({ children }: { children: ReactNode }) {
     () => ({
       stage,
       view,
+      rsvpAttendance,
       openInvitation,
       returnToCover,
       completeRsvp,
@@ -97,7 +105,7 @@ export function InvitationFlowProvider({ children }: { children: ReactNode }) {
       isInvitationOpen: view === "content",
       isRsvpCompleted: stage === "completed",
     }),
-    [stage, view, openInvitation, returnToCover, completeRsvp],
+    [stage, view, rsvpAttendance, openInvitation, returnToCover, completeRsvp],
   );
 
   return (

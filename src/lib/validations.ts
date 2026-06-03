@@ -14,7 +14,10 @@ export const rsvpSchema = z
       .trim()
       .min(2, "Введите имя")
       .max(80, "Имя слишком длинное"),
-    guests: guestCountSchema.optional(),
+    guests: z.preprocess(
+      (value) => (value === "" || value === null ? undefined : value),
+      guestCountSchema.optional(),
+    ),
     comment: z
       .string()
       .trim()
@@ -35,6 +38,18 @@ export const rsvpSchema = z
 
 export type RsvpFormValues = z.infer<typeof rsvpSchema>;
 
+/** Тело запроса с формы (до записи в таблицу). */
+export function buildRsvpRequestBody(values: RsvpFormValues) {
+  return {
+    attendance: values.attendance,
+    name: values.name.trim(),
+    guests: values.attendance === "yes" ? values.guests : undefined,
+    comment: values.comment?.trim() ?? "",
+    website: values.website ?? "",
+  };
+}
+
+/** Данные для Google Таблицы. */
 export function normalizeRsvpPayload(values: RsvpFormValues) {
   return {
     attendance: values.attendance,

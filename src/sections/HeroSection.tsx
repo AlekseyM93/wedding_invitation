@@ -31,7 +31,7 @@ export function HeroSection() {
           initial={{ y: 24, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.15, ease: "easeOut" }}
-          className="mb-5 max-w-md text-[10px] font-medium uppercase tracking-[0.32em] text-white/85 sm:mb-7 sm:text-[11px] sm:tracking-[0.38em] md:text-[12px] md:tracking-[0.42em]"
+          className="mb-5 max-w-lg text-[clamp(12px,2.4vw,17px)] font-medium uppercase tracking-[0.28em] text-white/90 sm:mb-7 sm:tracking-[0.34em] md:tracking-[0.38em]"
         >
           {weddingData.heroSubtitle}
         </motion.p>
@@ -65,7 +65,7 @@ export function HeroSection() {
           initial={{ y: 28, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.58, ease: "easeOut" }}
-          className="mt-5 text-center text-[11px] uppercase tracking-[0.28em] text-white/85 sm:mt-6 sm:text-[13px] sm:tracking-[0.34em] md:text-[14px]"
+          className="wedding-event-date wedding-event-date--hero mt-5 text-center sm:mt-6"
         >
           {weddingData.date}
         </motion.p>

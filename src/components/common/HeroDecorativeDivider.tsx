@@ -7,7 +7,7 @@ export function HeroDecorativeDivider() {
       aria-hidden="true"
     >
       <span className="h-px flex-1 bg-white/35" />
-      <DecorativeHeart className="h-10 w-10 border-white/25 bg-white/10 text-white shadow-none sm:h-11 sm:w-11" />
+      <DecorativeHeart variant="hero" className="h-10 w-10 sm:h-11 sm:w-11" />
       <span className="h-px flex-1 bg-white/35" />
     </div>
   );

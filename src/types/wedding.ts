@@ -20,6 +20,8 @@ export type DressColor = {
   id: number;
   name: string;
   hex: string;
+  /** Светлый оттенок — усиленная обводка, чтобы не терялся на фоне */
+  light?: boolean;
 };
 
 export type DressLook = {
@@ -37,6 +39,11 @@ export type FaqItem = {
 export type Venue = {
   title: string;
   address: string;
+  addressNote?: string;
+  image: string;
+  imageAlt: string;
+  latitude: number;
+  longitude: number;
   mapUrl: string;
   yandexUrl: string;
 };
@@ -61,6 +68,7 @@ export type WeddingData = {
     title: string;
     mainText: string;
     secondText: string;
+    thirdText: string;
   };
   venue: Venue;
   coordinator: Coordinator;

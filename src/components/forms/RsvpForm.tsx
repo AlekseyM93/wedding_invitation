@@ -12,11 +12,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ui } from "@/data/ui";
 import {
-  normalizeRsvpPayload,
+  buildRsvpRequestBody,
   rsvpSchema,
   type RsvpFormValues,
 } from "@/lib/validations";
 import { useInvitationFlow } from "@/contexts/InvitationFlowContext";
+import { scrollToThankYouSection } from "@/lib/scroll-to-thank-you";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -77,8 +78,7 @@ const AttendanceChoice = forwardRef<HTMLButtonElement, AttendanceChoiceProps>(
 );
 
 export function RsvpForm() {
-  const { completeRsvp } = useInvitationFlow();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { completeRsvp, isRsvpCompleted } = useInvitationFlow();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const yesRef = useRef<HTMLButtonElement>(null);
   const noRef = useRef<HTMLButtonElement>(null);
@@ -103,10 +103,14 @@ export function RsvpForm() {
   const attendance = watch("attendance");
 
   const selectAttendance = (value: "yes" | "no") => {
-    setValue("attendance", value, { shouldValidate: true });
+    setValue("attendance", value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
 
     if (value === "no") {
-      setValue("guests", undefined);
+      setValue("guests", undefined, { shouldValidate: true });
     }
   };
 
@@ -135,13 +139,11 @@ export function RsvpForm() {
 
   const onSubmit = async (values: RsvpFormValues) => {
     setSubmitError(null);
-    const payload = normalizeRsvpPayload(values);
-
     try {
       const response = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(buildRsvpRequestBody(values)),
       });
 
       const data = (await response.json()) as {
@@ -160,20 +162,16 @@ export function RsvpForm() {
         return;
       }
 
-      setIsSubmitted(true);
-      completeRsvp();
+      completeRsvp(values.attendance);
+      scrollToThankYouSection();
     } catch {
       setSubmitError(ui.rsvp.errorGeneric);
     }
   };
 
-  if (isSubmitted) {
+  if (isRsvpCompleted) {
     return (
-      <div
-        className="rsvp-success-panel"
-        role="status"
-        aria-live="polite"
-      >
+      <div className="rsvp-success-panel" role="status" aria-live="polite">
         <p className="rsvp-success-title">{ui.rsvp.successTitle}</p>
         <p className="rsvp-success-text">{ui.rsvp.successText}</p>
       </div>

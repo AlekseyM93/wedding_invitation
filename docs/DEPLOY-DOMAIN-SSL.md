@@ -127,7 +127,13 @@ sudo certbot --nginx -d ваш-домен.ru -d www.ваш-домен.ru
 
 ---
 
-## 5. Полезные ссылки
+## 5. Timeweb (домен vaminvite.ru)
+
+Пошаговая настройка под Timeweb Cloud и покупку домена: **[TIMEWEB-SETUP.md](./TIMEWEB-SETUP.md)**.
+
+---
+
+## 6. Полезные ссылки
 
 - [Документация Vercel: Custom Domains](https://vercel.com/docs/domains/working-with-domains/add-a-domain)
 - [RSVP → Google Таблица](./google-sheets-rsvp.md)

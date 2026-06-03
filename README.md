@@ -52,7 +52,9 @@ npm run check
 
 ## Деплой, домен и SSL
 
-Пошаговая инструкция: **[docs/DEPLOY-DOMAIN-SSL.md](docs/DEPLOY-DOMAIN-SSL.md)** (Vercel + HTTPS, подключение своего домена, чеклист).
+Пошаговая инструкция: **[docs/DEPLOY-DOMAIN-SSL.md](docs/DEPLOY-DOMAIN-SSL.md)** (Vercel + HTTPS, чеклист).
+
+**Домен на Timeweb:** **[docs/TIMEWEB-SETUP.md](docs/TIMEWEB-SETUP.md)** (App Platform, `vaminvite.ru`, SSL, переменные).
 
 Кратко:
 

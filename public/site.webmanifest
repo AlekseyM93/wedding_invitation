@@ -1,0 +1,17 @@
+{
+  "name": "Алексей и Валентина — свадебное приглашение",
+  "short_name": "Приглашение",
+  "description": "Электронное свадебное приглашение Алексея и Валентины",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F3EF",
+  "theme_color": "#F7F3EF",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

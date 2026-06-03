@@ -1,0 +1,184 @@
+.rsvp-section-header {
+  text-align: center;
+}
+
+.rsvp-section-kicker {
+  font-size: clamp(11px, 1.2vw, 13px);
+  line-height: 1.4;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(107, 79, 58, 0.72);
+}
+
+.rsvp-section-title {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.rsvp-section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  margin: clamp(1.25rem, 3vw, 2rem) auto;
+  max-width: 28rem;
+}
+
+.rsvp-section-divider-line {
+  height: 1px;
+  flex: 1;
+  background: rgba(220, 199, 161, 0.55);
+}
+
+.rsvp-section-subtitle {
+  margin-inline: auto;
+  max-width: 34rem;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.75;
+  color: rgba(78, 57, 43, 0.72);
+}
+
+.rsvp-form-shell {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  margin-inline: auto;
+  max-width: 52rem;
+}
+
+.rsvp-choice-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .rsvp-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .rsvp-choice-card {
+    min-height: 11.5rem;
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+}
+
+.rsvp-choice-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 10.5rem;
+  padding: 1.25rem 1rem 1.5rem;
+  border-radius: 28px;
+  border: 1px solid rgba(229, 222, 216, 0.95);
+  background: rgba(251, 249, 247, 0.88);
+  box-shadow: 0 12px 40px rgba(78, 57, 43, 0.06);
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rsvp-choice-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 48px rgba(78, 57, 43, 0.08);
+}
+
+.rsvp-choice-card--active {
+  border-color: rgba(220, 199, 161, 0.95);
+  background: rgba(247, 239, 228, 0.95);
+  box-shadow: 0 20px 56px rgba(78, 57, 43, 0.1);
+}
+
+.rsvp-choice-radio {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  height: 1.25rem;
+  width: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(167, 141, 111, 0.55);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.rsvp-choice-card--active .rsvp-choice-radio {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.rsvp-choice-icon {
+  margin-top: 0.25rem;
+  color: var(--gold);
+}
+
+.rsvp-choice-title {
+  margin-top: 1rem;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.rsvp-choice-text {
+  margin-top: 0.65rem;
+  max-width: 16rem;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(78, 57, 43, 0.68);
+}
+
+.rsvp-form-panel {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(251, 249, 247, 0.82);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: 0 24px 80px rgba(78, 57, 43, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.rsvp-privacy {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(78, 57, 43, 0.55);
+}
+
+.rsvp-success-panel {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(251, 249, 247, 0.88);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(78, 57, 43, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.rsvp-success-title {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(2.75rem, 8vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.rsvp-success-text {
+  margin-top: 1rem;
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.7;
+  color: rgba(78, 57, 43, 0.72);
+}

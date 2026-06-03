@@ -1,0 +1,201 @@
+/* Shared section background pattern */
+.section-bg {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.section-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* image-set: AVIF → WebP → PNG fallback */
+.section-bg-invitation {
+  --section-overlay: rgba(255, 255, 255, 0.55);
+  background-image: url("/images/фон-1-приглашение.png");
+  background-image: image-set(
+    url("/images/фон-1-приглашение.avif") type("image/avif"),
+    url("/images/фон-1-приглашение.webp") type("image/webp"),
+    url("/images/фон-1-приглашение.png") type("image/png")
+  );
+}
+
+.section-bg-story {
+  --section-overlay: rgba(255, 255, 255, 0.5);
+  background-image: url("/images/фон-2-история.png");
+  background-image: image-set(
+    url("/images/фон-2-история.avif") type("image/avif"),
+    url("/images/фон-2-история.webp") type("image/webp"),
+    url("/images/фон-2-история.png") type("image/png")
+  );
+}
+
+.section-bg-program {
+  --section-overlay: rgba(255, 255, 255, 0.52);
+  background-image: url("/images/фон-3-программа.png");
+  background-image: image-set(
+    url("/images/фон-3-программа.avif") type("image/avif"),
+    url("/images/фон-3-программа.webp") type("image/webp"),
+    url("/images/фон-3-программа.png") type("image/png")
+  );
+}
+
+.section-bg-location {
+  --section-overlay: rgba(255, 255, 255, 0.52);
+  background-image: url("/images/фон-4-локация.png");
+  background-image: image-set(
+    url("/images/фон-4-локация.avif") type("image/avif"),
+    url("/images/фон-4-локация.webp") type("image/webp"),
+    url("/images/фон-4-локация.png") type("image/png")
+  );
+}
+
+.section-bg-dress-code {
+  --section-overlay: rgba(255, 255, 255, 0.5);
+  background-image: url("/images/фон-5-дресскод.png");
+  background-image: image-set(
+    url("/images/фон-5-дресскод.avif") type("image/avif"),
+    url("/images/фон-5-дресскод.webp") type("image/webp"),
+    url("/images/фон-5-дресскод.png") type("image/png")
+  );
+}
+
+.section-bg-faq {
+  --section-overlay: rgba(255, 255, 255, 0.52);
+  background-image: url("/images/фон-6-важная-информация.png");
+  background-image: image-set(
+    url("/images/фон-6-важная-информация.avif") type("image/avif"),
+    url("/images/фон-6-важная-информация.webp") type("image/webp"),
+    url("/images/фон-6-важная-информация.png") type("image/png")
+  );
+}
+
+.section-bg-rsvp {
+  --section-overlay: rgba(255, 255, 255, 0.42);
+  background-image: url("/images/фон-7-rsvp.png");
+  background-image: image-set(
+    url("/images/фон-7-rsvp.avif") type("image/avif"),
+    url("/images/фон-7-rsvp.webp") type("image/webp"),
+    url("/images/фон-7-rsvp.png") type("image/png")
+  );
+}
+
+.section-bg::before {
+  background: var(--section-overlay);
+}
+
+/* Invitation: envelope bottom-left */
+.section-bg-invitation .invitation-content {
+  transform: translateY(clamp(-1.25rem, -2.5vw, -2.5rem));
+}
+
+@media (max-width: 767px) {
+  .section-bg-invitation {
+    background-position: 26% 62%;
+  }
+
+  .section-bg-story {
+    background-position: 78% center;
+  }
+
+  .section-bg-program {
+    background-position: center 42%;
+  }
+
+  .section-bg-location {
+    background-position: 22% 72%;
+  }
+
+  .section-bg-dress-code {
+    background-position: center 38%;
+  }
+
+  .section-bg-faq {
+    background-position: center 68%;
+  }
+
+  .section-bg-rsvp {
+    background-position: 28% 72%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .section-bg-invitation {
+    background-position: 30% 58%;
+  }
+
+  .section-bg-story {
+    background-position: 72% center;
+  }
+
+  .section-bg-program {
+    background-position: center 44%;
+  }
+
+  .section-bg-location {
+    background-position: 28% 64%;
+  }
+
+  .section-bg-dress-code {
+    background-position: center 40%;
+  }
+
+  .section-bg-faq {
+    background-position: center 62%;
+  }
+
+  .section-bg-rsvp {
+    background-position: 32% 64%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-bg-invitation {
+    background-position: center 40%;
+  }
+
+  .section-bg-story {
+    background-position: center;
+  }
+
+  .section-bg-program {
+    background-position: center 46%;
+  }
+
+  .section-bg-location {
+    background-position: 32% 58%;
+  }
+
+  .section-bg-dress-code {
+    background-position: center;
+  }
+
+  .section-bg-faq {
+    background-position: center 56%;
+  }
+
+  .section-bg-rsvp {
+    background-position: center 58%;
+  }
+}
+
+@media (min-width: 1536px) {
+  .section-bg-invitation {
+    background-position: center 38%;
+  }
+
+  .section-bg-rsvp {
+    background-position: center 56%;
+  }
+}
